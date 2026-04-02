@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Zona Total Novelas - Capítulos completos</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Estilos principales -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- HEADER -->
+        <header class="header">
+    <div class="logo">
+        <h1>ZONA TOTAL</h1>
+        <span class="logo-subtitle">NOVELAS</span>
+    </div>
+    
+    <!-- CATEGORÍAS (SOLO PC) -->
+    <nav class="categories-nav" id="categoriesNav">
+        <button class="category-btn active" data-category="todas">Todas</button>
+        <button class="category-btn" data-category="turcas">Turcas</button>
+        <button class="category-btn" data-category="mexicanas">Mexicanas</button>
+        <button class="category-btn" data-category="colombianas">Colombianas</button>
+        <button class="category-btn" data-category="romanticas">Románticas</button>
+        <button class="category-btn" data-category="clasicas">Clásicas</button>
+    </nav>
+    
+    <div class="header-buttons">
+        <a href="https://merencioreyna-sudo.github.io/zona-total-peliculas/" class="home-btn" target="_self">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
+        <!-- HERO BANNER -->
+<section class="hero-banner">
+    <div class="hero-content">
+        <h1 class="hero-title">NOVELAS</h1>
+        <p class="hero-subtitle">Capítulos completos en español · Todos los capítulos gratis</p>
+    </div>
+</section>
+
+
+        <!-- GRILLA DE NOVELAS -->
+        <section class="novelas-section">
+            <div class="section-header">
+                <h2><i class="fas fa-book-open"></i> Todas las novelas</h2>
+                <div class="filter-extras">
+                    <span class="novelas-counter" id="novelasCounter">📖 0 novelas</span>
+                </div>
+            </div>
+            <div class="novelas-grid" id="novelasGrid">
+                <!-- Las novelas se cargan dinámicamente con JS -->
+                <div class="loading-message">
+                    <i class="fas fa-spinner fa-spin"></i> Cargando novelas...
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+    <div class="footer-content">
+        <div class="footer-logo">
+            <h3>ZONA TOTAL</h3>
+            <p>Novelas por capítulos</p>
+        </div>
+        <div class="footer-links">
+            <a href="mailto:anelistrabajo@gmail.com">📧 Soporte: anelistrabajo@gmail.com</a>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2026 Zona Total Novelas. Todos los derechos reservados.</p>
+        </div>
+    </div>
+    <!-- Botón ADMIN -->
+    <button class="admin-btn" id="adminBtn" style="display: block;">
+        <i class="fas fa-lock"></i> ADMIN
+    </button>
+</footer>
+
+        <!-- MENÚ MÓVIL -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-header">
+                <div class="mobile-logo">ZONA TOTAL</div>
+                <button class="close-menu" id="closeMenu">&times;</button>
+            </div>
+            <nav class="mobile-categories">
+                <button class="mobile-category-btn active" data-category="todas">Todas</button>
+                <button class="mobile-category-btn" data-category="turcas">Turcas</button>
+                <button class="mobile-category-btn" data-category="mexicanas">Mexicanas</button>
+                <button class="mobile-category-btn" data-category="colombianas">Colombianas</button>
+                <button class="mobile-category-btn" data-category="romanticas">Románticas</button>
+                <button class="mobile-category-btn" data-category="clasicas">Clásicas</button>
+              
+            </nav>
+            <div class="mobile-footer">
+                <a href="https://merencioreyna-sudo.github.io/zona-total-peliculas/" class="mobile-home-btn">
+                    <i class="fas fa-home"></i> Ir al Inicio
+                </a>
+            </div>
+        </div>
+        <div class="menu-overlay" id="menuOverlay"></div>
+
+        <!-- MODAL DE NOVELA (detalle + capítulos) -->
+        <div class="modal-overlay" id="novelaModal">
+            <div class="modal-container">
+                <button class="modal-close" id="closeModal">&times;</button>
+                
+                <div class="modal-player-area">
+                    <div class="player-wrapper" id="playerWrapper">
+                        <iframe id="videoIframe" src="" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="capitulos-panel">
+                        <div class="capitulos-header">
+                            <h4><i class="fas fa-list"></i> Capítulos</h4>
+                            <span class="capitulo-actual" id="capituloActual">Capítulo 0 de 0</span>
+                        </div>
+                        <div class="capitulos-lista" id="capitulosLista">
+                            <!-- Botones de capítulos se generan dinámicamente -->
+                        </div>
+                        <div class="capitulos-nav">
+                            <button class="cap-nav-btn" id="capAnterior"><i class="fas fa-chevron-left"></i> Anterior</button>
+                            <button class="cap-nav-btn" id="capSiguiente">Siguiente <i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-info-area">
+                    <div class="novela-info">
+                        <h2 id="modalTitulo">Título de la novela</h2>
+                        <p class="novela-sinopsis" id="modalSinopsis">Sinopsis de la novela...</p>
+                        <div class="novela-detalles">
+                            <span><i class="fas fa-globe"></i> <span id="modalPais">País</span></span>
+                            <span><i class="fas fa-calendar"></i> <span id="modalAnio">Año</span></span>
+                            <span><i class="fas fa-tag"></i> <span id="modalGenero">Género</span></span>
+                            <span><i class="fas fa-list"></i> <span id="modalTotalCaps">0 capítulos</span></span>
+                            <span id="modalEstado" class="estado-badge">Completa</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL ADMIN -->
+        <div class="admin-modal-overlay" id="adminModalOverlay">
+            <div class="admin-modal">
+                <button class="admin-cerrar" id="adminCerrar">&times;</button>
+                <h2>🔐 PANEL ADMIN</h2>
+                <p>Gestión completa de novelas</p>
+                <div id="adminLoginPanel">
+                    <input type="password" id="adminPassword" placeholder="Contraseña de administrador">
+                    <button id="adminLoginBtn">Acceder</button>
+                </div>
+                <div id="adminGestionPanel" style="display: none;">
+                    <!-- Aquí se cargará el panel de gestión -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
