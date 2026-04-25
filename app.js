@@ -6,6 +6,7 @@ let capituloActual = 1;
 
 // ===== DOM ELEMENTS =====
 const novelasGrid = document.getElementById('novelasGrid');
+const searchInput = document.getElementById('searchInput');
 const novelasCounter = document.getElementById('novelasCounter');
 const menuToggle = document.getElementById('menuToggle');
 const mobileMenu = document.getElementById('mobileMenu');
@@ -25,6 +26,7 @@ const capitulosLista = document.getElementById('capitulosLista');
 const capituloActualSpan = document.getElementById('capituloActual');
 const capAnteriorBtn = document.getElementById('capAnterior');
 const capSiguienteBtn = document.getElementById('capSiguiente');
+
 
 // ===== CARGAR NOVELAS DESDE GOOGLE SHEETS =====
 async function cargarNovelas() {
@@ -394,4 +396,19 @@ document.addEventListener('DOMContentLoaded', () => {
             cerrarMobileMenu();
         }
     });
+
+if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        const texto = e.target.value.toLowerCase().trim();
+
+        const filtradas = todasLasNovelas.filter(novela => {
+            const titulo = novela.Titulo?.toLowerCase() || '';
+            return titulo.includes(texto);
+        });
+
+        renderizarNovelas(filtradas);
+        actualizarContador(filtradas.length);
+    });
+}
+
 });
